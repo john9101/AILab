@@ -7,5 +7,7 @@ public class TestSimpleReflexAgent {
 		env.addAgent(agent, Environment.LOCATION_A);
 
 		env.step(3);
+//		env.step();
+//		env.stepUntilDone();
 	}
 }
