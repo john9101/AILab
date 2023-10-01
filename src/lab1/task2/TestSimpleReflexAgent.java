@@ -8,7 +8,7 @@ public class TestSimpleReflexAgent {
 				Environment.LocationState.CLEAN, Environment.LocationState.DIRTY);
 		Agent agent = new Agent(new AgentProgram());
 		env.addAgent(agent, Environment.LOCATION_C);
-
-		env.stepUntilDone();
+		env.step();
+//		env.stepUntilDone();
 	}
 }
