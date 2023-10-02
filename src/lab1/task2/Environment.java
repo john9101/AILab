@@ -1,12 +1,5 @@
 package lab1.task2;
 
-import java.awt.Event;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import lab1.task1.Environment.LocationState;
-
 public class Environment {
 	public static final Action MOVE_LEFT = new DynamicAction("LEFT");
 	public static final Action MOVE_RIGHT = new DynamicAction("RIGHT");
@@ -138,15 +131,9 @@ public class Environment {
 		if (action == SUCK_DIRT) {
 			totalPoint += 500;
 		} else if (action == UP || action == DOWN || action == MOVE_LEFT || action == MOVE_RIGHT) {
-			String currentLocation = envState.getAgentLocation();
-			String nextLocation = getNextLocationAfterAction(currentLocation, action);
-			if (!currentLocation.equals(nextLocation)) {
-				totalPoint -= 10;
-			} else {
-				totalPoint -= 100;
-			}
-		} else {
 			totalPoint -= 10;
+		} else if (action == NoOpAction.NO_OP) {
+			totalPoint -= 100;
 		}
 		return totalPoint;
 	}
