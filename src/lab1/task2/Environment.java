@@ -1,5 +1,6 @@
 package lab1.task2;
 
+import java.awt.Event;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class Environment {
 	public static final String LOCATION_B = "B";
 	public static final String LOCATION_C = "C";
 	public static final String LOCATION_D = "D";
+	int totalPoint = 0;
 
 	public enum LocationState {
 		CLEAN, DIRTY
@@ -105,7 +107,8 @@ public class Environment {
 		Action anAction = agent.execute(getPerceptSeenBy());
 		EnvironmentState es = executeAction(anAction);
 
-		System.out.println("Agent Loc.: " + agentLocation + "\tAction: " + anAction);
+		System.out.println(
+				"Agent Loc.: " + agentLocation + "\tAction: " + anAction + "\tScore: " + measurePerformance(anAction));
 
 		if ((es.getLocationState(LOCATION_A) == LocationState.CLEAN)
 				&& (es.getLocationState(LOCATION_B) == LocationState.CLEAN)
@@ -129,5 +132,35 @@ public class Environment {
 			System.out.println("step: " + i++);
 			step();
 		}
+	}
+
+	public int measurePerformance(Action action) {
+		if (action == SUCK_DIRT) {
+			totalPoint += 500;
+		} else if (action == UP || action == DOWN || action == MOVE_LEFT || action == MOVE_RIGHT) {
+			String currentLocation = envState.getAgentLocation();
+			String nextLocation = getNextLocationAfterAction(currentLocation, action);
+			if (!currentLocation.equals(nextLocation)) {
+				totalPoint -= 10;
+			} else {
+				totalPoint -= 100;
+			}
+		} else {
+			totalPoint -= 10;
+		}
+		return totalPoint;
+	}
+
+	public String getNextLocationAfterAction(String currentLocation, Action action) {
+		if (action == UP) {
+			return getUpLocation(currentLocation);
+		} else if (action == DOWN) {
+			return getDownLocation(currentLocation);
+		} else if (action == MOVE_LEFT) {
+			return getLeftLocation(currentLocation);
+		} else if (action == MOVE_RIGHT) {
+			return getRightLocation(currentLocation);
+		}
+		return currentLocation;
 	}
 }
