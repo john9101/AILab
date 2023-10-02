@@ -138,16 +138,16 @@ public class Environment {
 		return totalPoint;
 	}
 
-	public String getNextLocationAfterAction(String currentLocation, Action action) {
-		if (action == UP) {
-			return getUpLocation(currentLocation);
-		} else if (action == DOWN) {
-			return getDownLocation(currentLocation);
-		} else if (action == MOVE_LEFT) {
-			return getLeftLocation(currentLocation);
-		} else if (action == MOVE_RIGHT) {
-			return getRightLocation(currentLocation);
-		}
-		return currentLocation;
-	}
+//	public String getNextLocationAfterAction(String currentLocation, Action action) {
+//		if (action == UP) {
+//			return getUpLocation(currentLocation);
+//		} else if (action == DOWN) {
+//			return getDownLocation(currentLocation);
+//		} else if (action == MOVE_LEFT) {
+//			return getLeftLocation(currentLocation);
+//		} else if (action == MOVE_RIGHT) {
+//			return getRightLocation(currentLocation);
+//		}
+//		return currentLocation;
+//	}
 }
