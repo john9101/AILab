@@ -1,4 +1,4 @@
-package lab2.task1_2;
+package lab2.task4;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,22 +26,11 @@ public class TestDrive {
 		nodeE.addEdge(nodeG, 6);
 		nodeF.addEdge(nodeG, 1);
 		
-		//Task 1
-		System.out.println("-- Task 1 --");
-		ISearchAlgo algo1 = new BreadthFirstSearchAlgo();
+		ISearchAlgo algo1 = new UniformCostSearchAlgo();
 		Node result1 = algo1.execute(nodeS, "G");
 		System.out.println(NodeUtils.printPath(result1));
-
-		ISearchAlgo algo2 = new DepthFirstSearchAlgo();
-		Node result2 = algo2.execute(nodeS, "G");
+		
+		Node result2 = algo1.execute(nodeS, "C", "G");
 		System.out.println(NodeUtils.printPath(result2));
-		
-		//Task 2
-		System.out.println("-- Task 2 --");
-		Node result3 = algo1.execute(nodeS,"A", "G");
-		System.out.println(NodeUtils.printPath(result3));
-		
-		Node result4 = algo2.execute(nodeS, "C", "G");
-		System.out.println(NodeUtils.printPath(result4));
 	}
 }
