@@ -26,17 +26,9 @@ public class AStarSearchAlgo implements IPuzzleAlgo {
 			
 			List<Node> childrenState = model.getSuccessors(currentState);
 			for (Node childState : childrenState) {
-				int nextStep = currentState.getG() + 1;
 				if(!frontier.contains(childState) && !exploredSet.contains(childState)) {
 					childState.setParent(currentState);
-					childState.setH(model.computeH2(currentState));
 					childState.setG(currentState.getG() + 1);
-					frontier.offer(childState);
-				}else if(frontier.contains(childState) && childState.getG() > nextStep) {
-					frontier.remove(childState);
-					childState.setG(nextStep);
-					childState.setH(model.computeH2(currentState));
-					childState.setParent(currentState);
 					frontier.offer(childState);
 				}
 			}
